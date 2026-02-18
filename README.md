@@ -1,2 +1,1 @@
-# Birds-Arent-Real-Analysis
-An analysis of Twitter data from the parody conspiracy theory "Birds Aren't Real"
+# Birds Aren't Real on Twitter
