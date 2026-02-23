@@ -42,7 +42,15 @@ word_list = [" ", "a", "the", "of", "with", "for", "The",
              "How","I've", "@DroniesNFT", ]
 
 # Saves a new version of the dataset, now cleaned.
-((fresh_birds[fresh_birds.value.isin(word_list) == False]).dropna()).head(200).to_csv("filterbirb_final.csv")
+bdf = ((fresh_birds[fresh_birds.value.isin(word_list) == False]).dropna()).head(200)
+
+# Cheeky for loop applies a further layer of word filtering 
+for word in bdf["value"]:
+    if word == (bdf["value"].str.contains(str(STOPWORDS)).any()):
+        word.drop(index=0, inplace=True)
+
+# Saves the new dataframe bdf to csv
+bdf.to_csv("filterbirb_final.csv")
 
 # Final adjustments are made in Tableau, in case this initial round of cleaning still misses one or 
 # two stray values. 
